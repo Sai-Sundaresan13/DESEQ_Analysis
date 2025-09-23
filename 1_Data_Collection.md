@@ -31,5 +31,5 @@ This step involves downloading `.fastq` or `.sra` files from the European Nucleo
 
 
 
-##Individual Downloads:
+## Individual Downloads:
 - The individual files can be downloaded from their wget links which are accessable from ENA. 
