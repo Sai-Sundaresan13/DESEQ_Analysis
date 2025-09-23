@@ -37,3 +37,48 @@ hisat2 -x grch38_index \
 ```
 
 The threads correspond to the number of CPU cores used for the process which can be adjusted based on the computational power available.
+
+
+
+## SORTING .SAM FILES AND CONVERSION TO .BAM
+
+SAM files are converted to sorted and indexed BAM files using SAMtools. BAM files are more efficient for storage and further processing.
+
+## 1. One-Liner Command: Convert, Sort, and Index in One Go
+
+To perform all three steps (convert to BAM, sort, and index) in a single command:
+
+```
+for file in *.sam; do
+    samtools view -bS "$file" | samtools sort -o "${file%.sam}.bam"
+    samtools index "${file%.sam}.bam"
+done
+```
+
+## 2. Running Commands Separately
+
+If you prefer to do each step individually, use the following:
+
+### a. Convert SAM to BAM:
+
+```
+for file in *.sam; do
+    samtools view -bS "$file" -o "${file%.sam}.bam"
+done
+```
+
+### b. Sort BAM Files:
+
+```
+for file in *.bam; do
+    samtools sort "$file" -o "${file%.bam}_sorted.bam"
+done
+```
+
+### c. Index Sorted BAM Files:
+
+```
+for file in *_sorted.bam; do
+    samtools index "$file"
+done
+```
