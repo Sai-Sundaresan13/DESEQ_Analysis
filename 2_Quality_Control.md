@@ -11,6 +11,10 @@ Step 2: Run FastQC on all files in the directory
 fastqc *
 ```
 The above command generates the quality control files containing attributes such as GC content, Per base sequence, Adapters, etc.
+Store all the iutput files into a new folder using the command - 
+```
+mv *.html *.zip results_files/
+```
 
 Step 3: Run MultiQC to aggregate FastQC results interactively
 ```
