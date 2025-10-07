@@ -16,6 +16,11 @@ Store all the iutput files into a new folder using the command -
 mv *.html *.zip results_files/
 ```
 
+NOTE: both the above can be donw in a single step using -
+```
+fastqc *.fastq.gz -o fastqc_results/
+```
+
 Step 3: Run MultiQC to aggregate FastQC results interactively
 ```
 multiqc * --interactive
