@@ -82,3 +82,31 @@ for file in *_sorted.bam; do
     samtools index "$file"
 done
 ```
+
+
+
+# RUNNING STAR FOR ALIGNMENT
+
+After downloading the tool, create the genome index file. i have taken _Plasmodium falciparum_ genome as the reference for my analysis.
+```
+STAR --runThreadN 8 \
+     --runMode genomeGenerate \
+     --genomeDir genome_index \
+     --genomeFastaFiles reference.fa \
+     --sjdbGTFfile reference.gtf \
+     --sjdbOverhang 100
+```
+
+Now, the alignment process can be done with the reference genome being indexed. I have used a paired end file, so i will be using the below command for it. This will perform the alignment and output me with.bam files and some log files.
+
+```
+for sample in $(ls *_R1.fastq.gz | sed 's/_R1.fastq.gz//'); do
+    echo "Running STAR on $sample..."
+    STAR --runThreadN 8 \
+         --genomeDir genome_index \
+         --readFilesIn ${sample}_R1.fastq.gz ${sample}_R2.fastq.gz \
+         --readFilesCommand zcat \
+         --outFileNamePrefix star_out/${sample}_ \
+         --outSAMtype BAM SortedByCoordinate
+done
+```
