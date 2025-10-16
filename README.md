@@ -1,4 +1,4 @@
-# DESEQ_Analysis
+# DIFFERENTIAL GENE EXPRESSION Analysis
 This repository is a basic pipeline for Differential Gene Expression Analysis involving Bash scripting and R programming.
 
 # Bash Scripting:
