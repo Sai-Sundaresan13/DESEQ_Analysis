@@ -56,6 +56,7 @@ res
 summary(res)
 
 # Filter the results based on the p-value
+# Better to perform filtration based on the p-values and the logFC values, which is used below for generating upRes and downRes.
 res0.01 <- results(dds, alpha = 0.01)
 summary(res0.01)
 resultsNames(dds)
