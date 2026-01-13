@@ -26,6 +26,9 @@ trim_galore --paired --quality 20 --length 30 --fastqc sample_R1.fastq.gz sample
 Batch-processing all `.fastq.gz` files in a directory (used in this project):
 
 ```
+outdir = "trimmed_fastq"
+mkdir -p "outdir"
+
 for file in *_R1.fastq.gz
 do
     base=$(basename "$file" "_R1.fastq.gz")
@@ -35,7 +38,7 @@ do
 
     echo "Trimming $file1 and $file2..."
 
-    trim_galore --paired --quality 20 --length 30 --fastqc "$file1" "$file2"
+    trim_galore --paired --quality 20 --length 30 --fastqc --output_dir "$outdir" "$file1" "$file2" 
 done
 ```
 
